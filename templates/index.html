@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVA Smart Campus - IoT & AI Driven Ecosystem</title>
+    <meta name="description" content="Centralized digital nervous system and responsive, sustainable IoT ecosystem for REVA University. Real-time parking, seating, lighting, and automation.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Background Patterns -->
+    <div class="bg-grid"></div>
+    <div class="bg-radial"></div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">R</div>
+                <div class="logo-text">
+                    <span class="logo-title">REVA Smart Campus</span>
+                    <span class="logo-subtitle">IoT Framework Initiative</span>
+                </div>
+            </a>
+            <nav>
+                <a href="#showcase" class="nav-link">Design Showcase</a>
+                <a href="#dashboard" class="nav-link">Live Prototype</a>
+                <a href="https://www.reva.edu.in" target="_blank" class="nav-btn">REVA Web</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="badge">Connected Campus Framework</span>
+                <h1 class="hero-title">A Responsive, Sustainable <span>Smart Campus</span> Ecosystem</h1>
+                <p class="hero-desc">
+                    Transforming REVA University with an IoT-integrated framework and AI analytics. Bridges the gap between available resources and student needs with live data.
+                </p>
+                <div class="hero-actions">
+                    <a href="#dashboard" class="btn-primary">
+                        Launch Live Demo
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="#showcase" class="btn-secondary">Explore Concept</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-val" id="stat-carbon">30.00<span>%</span></span>
+                        <span class="stat-lbl">Carbon Reduction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-val" id="stat-time">25<span>m</span></span>
+                        <span class="stat-lbl">Daily Time Saved</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-val" id="stat-accuracy">100<span>%</span></span>
+                        <span class="stat-lbl">Sensor Accuracy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-circle-outer"></div>
+                <div class="hero-circle-inner"></div>
+                <div class="hero-dashboard-preview">
+                    <!-- Simple visualization simulating live traffic grid -->
+                    <div style="font-family:'Outfit', sans-serif; font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; letter-spacing: 0.05em; display: flex; justify-content: space-between;">
+                        <span>System Monitor</span>
+                        <span style="color: var(--success); display:flex; align-items:center; gap: 4px;"><span class="pulse-dot" style="width:6px; height:6px;"></span>Online</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem;">
+                        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; text-align: center;">
+                            <div style="font-size: 0.6rem; color: var(--text-secondary);">Parking</div>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--success);" id="mini-parking">7/10</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; text-align: center;">
+                            <div style="font-size: 0.6rem; color: var(--text-secondary);">Library</div>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--warning);" id="mini-library">3 Vacant</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; text-align: center;">
+                            <div style="font-size: 0.6rem; color: var(--text-secondary);">Energy</div>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--info);">Eco Mode</div>
+                        </div>
+                    </div>
+                    <div style="height: 60px; background: rgba(255,255,255,0.01); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                        <span style="font-size: 0.65rem; color: var(--text-muted);">Alert Feed</span>
+                        <span style="font-size: 0.75rem; color: var(--text-secondary); text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" id="mini-alert">Initializing system telemetry...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Thinking Slide Showcase -->
+        <section class="slides-section" id="showcase">
+            <div class="section-header">
+                <span class="badge">Project Blueprint</span>
+                <h2 class="section-title">Design Thinking & Concepts</h2>
+                <p class="section-desc">Interactive deck exploring the research, solutions, and visionary goals of the Smart Campus prototype.</p>
+            </div>
+
+            <div class="slides-container">
+                <div class="slide-nav">
+                    <button class="slide-tab active" data-slide="slide-define">1. Define Phase</button>
+                    <button class="slide-tab" data-slide="slide-ideate">2. Ideate Phase</button>
+                    <button class="slide-tab" data-slide="slide-solutions">3. Smart Solutions</button>
+                    <button class="slide-tab" data-slide="slide-components">4. Key Components</button>
+                    <button class="slide-tab" data-slide="slide-impact">5. Visionary Impact</button>
+                    <button class="slide-tab" data-slide="slide-test">6. Test & Metrics</button>
+                </div>
+
+                <!-- SLIDE 1: DEFINE -->
+                <div class="slide-content active" id="slide-define">
+                    <div class="slide-grid-2">
+                        <div>
+                            <div class="slide-title-area">
+                                <span class="slide-num">Phase 01</span>
+                                <h3 class="slide-heading">Define the Core Challenges</h3>
+                            </div>
+                            <p class="slide-text">
+                                Campus facilities suffer from a disconnect between active student usage and infrastructure operations. The absence of live feedback loops yields information lag and severe resource misalignment.
+                            </p>
+                            <p class="slide-text" style="font-weight: 500; color: var(--brand-secondary);">
+                                Strategic Goal: To implement an IoT-integrated framework that transforms the passive campus into a responsive, sustainable ecosystem.
+                            </p>
+                        </div>
+                        <div class="slide-grid-3" style="grid-template-columns: 1fr; gap: 1rem;">
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <div class="slide-card-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                    </div>
+                                    <h4 class="slide-card-title">Problem Identification</h4>
+                                </div>
+                                <ul class="slide-card-bullet">
+                                    <li><strong>Invisibility:</strong> Lack of real-time data for parking and facility availability.</li>
+                                    <li><strong>Manual Systems:</strong> Over-reliance on outdated, non-automated management.</li>
+                                    <li><strong>Communication Gap:</strong> Delayed updates leading to venue confusion.</li>
+                                </ul>
+                            </div>
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <div class="slide-card-icon" style="color: var(--warning); background: rgba(245, 158, 11, 0.1);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                    </div>
+                                    <h4 class="slide-card-title">Efficiency Challenges</h4>
+                                </div>
+                                <ul class="slide-card-bullet">
+                                    <li><strong>Resource Waste:</strong> High energy consumption in unoccupied classrooms.</li>
+                                    <li><strong>Productivity Loss:</strong> Daily time wasted on navigation and seat hunting.</li>
+                                    <li><strong>Crowd Friction:</strong> Unmanaged queues due to lack of occupancy data.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2: IDEATE -->
+                <div class="slide-content" id="slide-ideate">
+                    <div class="slide-grid-2">
+                        <div>
+                            <div class="slide-title-area">
+                                <span class="slide-num">Phase 02</span>
+                                <h3 class="slide-heading">Ideating the Intelligent Solution</h3>
+                            </div>
+                            <p class="slide-text">
+                                We brainstormed deploying an integrated IoT sensor network and AI-driven analytics. By translating physical parameters (occupancy, temperature, motion) into live telemetry, university software can react instantly to maximize utilization and trim waste.
+                            </p>
+                            <p class="slide-text">
+                                <strong>Scalability:</strong> Built as a modular framework, this ecosystem acts as a miniature pilot that can scale seamlessly to support high-density urban smart-city resource initiatives.
+                            </p>
+                        </div>
+                        <div class="slide-grid-3" style="grid-template-columns: 1fr; gap: 1rem;">
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <div class="slide-card-icon" style="color: var(--info); background: rgba(6, 182, 212, 0.1);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                                    </div>
+                                    <h4 class="slide-card-title">Digital Nervous System</h4>
+                                </div>
+                                <p class="slide-text" style="font-size: 0.9rem; margin-bottom: 0;">
+                                    Linking individual hardware nodes (thermostats, infrared sensors, NFC check-in terminals) to centralized cloud dashboards, turning inert buildings into an organic, responsive framework.
+                                </p>
+                            </div>
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <div class="slide-card-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    </div>
+                                    <h4 class="slide-card-title">AI & Smart Automation</h4>
+                                </div>
+                                <p class="slide-text" style="font-size: 0.9rem; margin-bottom: 0;">
+                                    Using statistical models to predict facility traffic and occupancy. Prompts students to adjust canteen trip times, saving physical queuing while letting classroom lights shut down automatically when empty.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3: SMART SOLUTIONS -->
+                <div class="slide-content" id="slide-solutions">
+                    <div class="slide-grid-2" style="grid-template-columns: 0.8fr 1.2fr;">
+                        <div>
+                            <div class="slide-title-area">
+                                <span class="slide-num">Phase 03</span>
+                                <h3 class="slide-heading">Proposed Smart Solutions</h3>
+                            </div>
+                            <p class="slide-text">
+                                We translated our ideas into three primary solution columns that address physical navigation, real-time coordination, and environmental footprint.
+                            </p>
+                        </div>
+                        <div class="slide-grid-3" style="grid-template-columns: 1fr; gap: 1rem;">
+                            <div class="slide-card" style="padding: 1.25rem;">
+                                <div style="display:flex; gap: 1rem; align-items: flex-start;">
+                                    <div class="slide-card-icon" style="flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
+                                    <div>
+                                        <h5 style="font-size:1.05rem; font-weight:600; margin-bottom:0.25rem;">IoT Sensor Network</h5>
+                                        <p style="font-size:0.85rem; color:var(--text-secondary);">Deploying occupancy sensors to automate lighting, HVAC, and power outlets in real-time based on active occupancy status.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-card" style="padding: 1.25rem;">
+                                <div style="display:flex; gap: 1rem; align-items: flex-start;">
+                                    <div class="slide-card-icon" style="color: var(--brand-secondary); background: rgba(249, 115, 22, 0.1); flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg></div>
+                                    <div>
+                                        <h5 style="font-size:1.05rem; font-weight:600; margin-bottom:0.25rem;">Centralized Campus Hub</h5>
+                                        <p style="font-size:0.85rem; color:var(--text-secondary);">A live digital portal connecting students with space availability metrics (parking slots, library study pods, food court congestion levels).</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-card" style="padding: 1.25rem;">
+                                <div style="display:flex; gap: 1rem; align-items: flex-start;">
+                                    <div class="slide-card-icon" style="color: var(--info); background: rgba(6, 182, 212, 0.1); flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+                                    <div>
+                                        <h5 style="font-size:1.05rem; font-weight:600; margin-bottom:0.25rem;">Smart Navigation & Display</h5>
+                                        <p style="font-size:0.85rem; color:var(--text-secondary);">AR-ready digital mapping directions for instant room localization alongside cloud-synced digital notice signage for schedules.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 4: KEY COMPONENTS -->
+                <div class="slide-content" id="slide-components">
+                    <div class="slide-grid-2">
+                        <div>
+                            <div class="slide-title-area">
+                                <span class="slide-num">Phase 04</span>
+                                <h3 class="slide-heading">Functional Prototype Components</h3>
+                            </div>
+                            <p class="slide-text">
+                                To demonstrate value, our framework targets concrete use cases that deliver immediate satisfaction. From physical device check-in to automated rooms, our prototype mimics the student journey.
+                            </p>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                                <h5 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--brand-secondary);">Innovative Features:</h5>
+                                <ul class="slide-card-bullet">
+                                    <li><strong>Predictive Analytics:</strong> Forecasting cafeteria queues to recommend quiet dining slots.</li>
+                                    <li><strong>Live Notice Boards:</strong> Instant push alerts notifying users of sudden venue updates.</li>
+                                    <li><strong>Auto-Attendance:</strong> Eliminating check-in delays using NFC/Bluetooth tap-points.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="slide-grid-3" style="grid-template-columns: 1fr; gap: 1rem;">
+                            <div class="slide-card">
+                                <h5 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items:center; gap: 8px;">
+                                    <span style="color:var(--brand-primary)">01.</span> Live Dashboard UI
+                                </h5>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Providing graphical feedback on library table vacancy, food lines, and parking counts for fast decision-making.</p>
+                            </div>
+                            <div class="slide-card">
+                                <h5 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items:center; gap: 8px;">
+                                    <span style="color:var(--brand-primary)">02.</span> Smart Lighting Circuit
+                                </h5>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">An occupancy-driven room model verifying that electric light loads and HVAC cycles deactivate autonomously when spaces empty.</p>
+                            </div>
+                            <div class="slide-card">
+                                <h5 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items:center; gap: 8px;">
+                                    <span style="color:var(--brand-primary)">03.</span> Notification Logic
+                                </h5>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">An event-driven push router ensuring scheduled classroom relocations broadcast instantly to devices, avoiding confusion.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 5: VISIONARY IMPACT -->
+                <div class="slide-content" id="slide-impact">
+                    <div class="slide-grid-2">
+                        <div>
+                            <div class="slide-title-area">
+                                <span class="slide-num">Phase 05</span>
+                                <h3 class="slide-heading">The Visionary Impact</h3>
+                            </div>
+                            <p class="slide-text">
+                                Transitioning to a data-connected structure creates long-term benefits for university operations, budgets, and green campus targets.
+                            </p>
+                            <p class="slide-text">
+                                Over 60% of university carbon footprint stems from heating and lighting unoccupied spaces. Live monitoring trims energy overheads, creating a circular, green campus architecture.
+                            </p>
+                        </div>
+                        <div class="slide-grid-3" style="grid-template-columns: 1fr; gap: 1rem;">
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <div class="slide-card-icon" style="color: var(--success); background: rgba(16, 185, 129, 0.1);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                    </div>
+                                    <h4 class="slide-card-title">Sustainable Ecosystem</h4>
+                                </div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                                    Achieves a massive decrease in electricity bills and carbon overheads through smart grid distribution, matching building usage closely with electrical load demands.
+                                </p>
+                            </div>
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <div class="slide-card-icon" style="color: var(--brand-secondary); background: rgba(249, 115, 22, 0.1);">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                    </div>
+                                    <h4 class="slide-card-title">Enhanced UX Flow</h4>
+                                </div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                                    Empowers students with predictability. Know where to park, where to study, and when to eat before leaving the dorm, transforming the campus into an inviting, high-tech hub.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 6: TEST & METRICS -->
+                <div class="slide-content" id="slide-test">
+                    <div class="slide-grid-2">
+                        <div>
+                            <div class="slide-title-area">
+                                <span class="slide-num">Phase 06</span>
+                                <h3 class="slide-heading">Execution, Validation & Metrics</h3>
+                            </div>
+                            <p class="slide-text">
+                                Real world testing verifies stability and user ergonomics. The deployment phases enforce rigour from code debug cycles to pilot rollouts.
+                            </p>
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <h4 class="slide-card-title">Benefits of the Prototype</h4>
+                                </div>
+                                <ul class="slide-card-bullet" style="font-size: 0.85rem;">
+                                    <li><strong>Error Prevention:</strong> Flags signal drops and sensor flaws prior to general deployment.</li>
+                                    <li><strong>Cost Savings:</strong> Adjusting software in virtual staging lowers hardware risk.</li>
+                                    <li><strong>Student Validation:</strong> Gathers direct user feedback to polish layouts.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="slide-grid-3" style="grid-template-columns: 1fr; gap: 1rem;">
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <div class="slide-card-icon" style="color: var(--info); background: rgba(6, 182, 212, 0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                                    <h4 class="slide-card-title">Execution & Trials</h4>
+                                </div>
+                                <ul class="slide-card-bullet" style="font-size: 0.85rem;">
+                                    <li><strong>User Trials:</strong> Direct trial runs testing application layouts with active students.</li>
+                                    <li><strong>System Accuracy:</strong> Verifying sensors achieve 100% precision in occupancy telemetry.</li>
+                                </ul>
+                            </div>
+                            <div class="slide-card">
+                                <div class="slide-card-header">
+                                    <div class="slide-card-icon" style="color: var(--brand-secondary); background: rgba(249, 115, 22, 0.1);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                                    <h4 class="slide-card-title">Evaluation Metrics</h4>
+                                </div>
+                                <ul class="slide-card-bullet" style="font-size: 0.85rem;">
+                                    <li><strong>Time Optimization:</strong> Quantifying minutes saved during parking/seating search runs.</li>
+                                    <li><strong>Network Stability:</strong> Monitoring mesh node up-times under load.</li>
+                                    <li><strong>Iterative Refinement:</strong> Improving dashboard speeds based on user reports.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Interactive IoT Live Dashboard (The Prototype) -->
+        <section class="dashboard-section" id="dashboard">
+            <div class="section-header">
+                <span class="badge">Functional Prototype</span>
+                <h2 class="section-title">Live IoT & Campus Dashboard</h2>
+                <p class="section-desc">Interact with the real-time simulations to test our smart campus software solutions.</p>
+            </div>
+
+            <div class="dashboard-layout">
+                <!-- Sidebar Nav -->
+                <aside class="db-sidebar">
+                    <h4 class="db-sidebar-title">Modules</h4>
+                    <div class="db-nav">
+                        <button class="db-tab active" data-panel="panel-parking">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="22" height="18" rx="2" ry="2"></rect><path d="M9 17V9h4a3 3 0 0 1 0 6H9"></path></svg>
+                            Parking Tracker
+                        </button>
+                        <button class="db-tab" data-panel="panel-library">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            Library Seating
+                        </button>
+                        <button class="db-tab" data-panel="panel-canteen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                            Canteen Analytics
+                        </button>
+                        <button class="db-tab" data-panel="panel-lighting">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .5 2.5 1.5 3.5.7.8 1.3 1.5 1.5 2.5"></path><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line></svg>
+                            Smart Room lighting
+                        </button>
+                        <button class="db-tab" data-panel="panel-notifications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                            Alert Engine
+                        </button>
+                        <button class="db-tab" data-panel="panel-attendance">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                            Attendance Tap
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Dashboard Content Area -->
+                <div class="db-viewport">
+
+                    <!-- PANEL 1: PARKING TRACKER -->
+                    <div class="db-panel active" id="panel-parking">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <h3>Smart Parking Lot Tracker</h3>
+                                <p>Real-time slot status telemetry (Main Entrance Lot A & B)</p>
+                            </div>
+                            <span class="panel-badge">
+                                <span class="pulse-dot"></span>
+                                Live Feed
+                            </span>
+                        </div>
+                        <div class="parking-stats">
+                            <div class="parking-stat-card">
+                                <div style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase;">Total Slots</div>
+                                <div class="val" style="color: var(--text-primary);">10</div>
+                            </div>
+                            <div class="parking-stat-card">
+                                <div style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase;">Vacant</div>
+                                <div class="val" style="color: var(--success);" id="parking-vacant-count">--</div>
+                            </div>
+                            <div class="parking-stat-card">
+                                <div style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase;">Occupied</div>
+                                <div class="val" style="color: var(--danger);" id="parking-occupied-count">--</div>
+                            </div>
+                        </div>
+                        <div class="parking-grid-container">
+                            <div class="parking-grid-header">
+                                <h4 style="font-size:1.05rem; font-weight:600;">Lot Visual Map</h4>
+                                <div class="parking-filters">
+                                    <button class="filter-btn active" data-filter="all">All</button>
+                                    <button class="filter-btn" data-filter="vacant">Vacant</button>
+                                    <button class="filter-btn" data-filter="occupied">Occupied</button>
+                                </div>
+                            </div>
+                            <!-- 10 Parking Slots -->
+                            <div class="parking-lots" id="parking-grid">
+                                <!-- Slots will be populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 2: LIBRARY SEATING -->
+                    <div class="db-panel" id="panel-library">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <h3>Library Study Pod Seating</h3>
+                                <p>Book study rooms and pods with automated power-outlet ignition</p>
+                            </div>
+                            <span class="panel-badge">
+                                <span class="pulse-dot"></span>
+                                Sensors Online
+                            </span>
+                        </div>
+                        <div class="library-layout-grid">
+                            <div class="library-map-card">
+                                <h4 style="font-size: 1rem; font-weight:600; align-self: flex-start;">Floor Plan: Block C Library</h4>
+                                <div class="library-grid" id="library-grid">
+                                    <!-- Pods populated by JS -->
+                                </div>
+                                <div class="library-legend">
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: var(--success);"></div>
+                                        <span>Vacant</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: var(--danger);"></div>
+                                        <span>Occupied</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: var(--brand-secondary);"></div>
+                                        <span>Your Selection</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- UX Flow Simulator -->
+                            <div class="ux-flow-card">
+                                <div class="ux-flow-header">
+                                    <h4>Simulated Student Journey</h4>
+                                    <p>Select an available pod on the map to trigger the UX flow</p>
+                                </div>
+                                <div class="flow-steps">
+                                    <div class="flow-step" id="flow-step-1">
+                                        <div class="flow-step-dot"></div>
+                                        <div class="flow-step-title">01. Discovery</div>
+                                        <div class="flow-step-desc">Check the app for available study space.</div>
+                                    </div>
+                                    <div class="flow-step" id="flow-step-2">
+                                        <div class="flow-step-dot"></div>
+                                        <div class="flow-step-title">02. Navigation</div>
+                                        <div class="flow-step-desc">Request fastest routing directions to the spot.</div>
+                                    </div>
+                                    <div class="flow-step" id="flow-step-3">
+                                        <div class="flow-step-dot"></div>
+                                        <div class="flow-step-title">03. Interaction</div>
+                                        <div class="flow-step-desc">Power outlet turns active on physical arrival.</div>
+                                    </div>
+                                </div>
+                                <div class="flow-action-area">
+                                    <div class="outlet-indicator">
+                                        <span class="outlet-status" id="outlet-status-text">Outlet Deactivated</span>
+                                        <span class="outlet-glow" id="outlet-status-glow"></span>
+                                    </div>
+                                    <button class="btn-primary" id="btn-reserve" style="width: 100%; justify-content: center;" disabled>Select a Study Pod</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 3: CANTEEN ANALYTICS -->
+                    <div class="db-panel" id="panel-canteen">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <h3>Canteen Traffic Analytics</h3>
+                                <p>Avoid queues with predictive crowd levels and recommendations</p>
+                            </div>
+                            <span class="panel-badge">
+                                <span class="pulse-dot"></span>
+                                AI Enabled
+                            </span>
+                        </div>
+                        <div class="canteen-grid">
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <div>
+                                        <h4 style="font-size: 1.05rem; font-weight: 600;">Hourly Occupancy Index</h4>
+                                        <span class="chart-title-sub">Projected crowd percentage for today</span>
+                                    </div>
+                                    <span style="font-size:0.8rem; background:rgba(255,255,255,0.05); padding: 0.25rem 0.5rem; border-radius:4px;" id="current-hour-index">Live: 2:00 PM</span>
+                                </div>
+                                <div class="chart-visual-wrapper" id="chart-wrapper">
+                                    <!-- Tooltip -->
+                                    <div class="chart-tooltip" id="chart-tooltip">12:00 PM: --% Capacity</div>
+                                    <!-- Dynamic SVG chart line & points -->
+                                    <svg class="svg-chart" id="analytics-svg" viewBox="0 0 600 220">
+                                        <!-- Grid lines and markers will be dynamically built in JS -->
+                                    </svg>
+                                </div>
+                            </div>
+                            <!-- AI Advice Card -->
+                            <div class="ai-recommendation-card">
+                                <div>
+                                    <div class="ai-rec-header">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                        <span class="ai-rec-title">Smart AI Assistant</span>
+                                    </div>
+                                    <p class="ai-rec-desc" id="ai-rec-text">
+                                        Cafeteria counts indicate peak rushes occur between 12:30 PM and 1:45 PM. To bypass queues, dine outside these blocks.
+                                    </p>
+                                </div>
+                                <div class="ai-rec-badge" id="ai-rec-badge-time">
+                                    Best Visit Time: 2:00 PM onwards
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 4: SMART ROOM LIGHTING -->
+                    <div class="db-panel" id="panel-lighting">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <h3>Smart Lighting & HVAC Simulator</h3>
+                                <p>Simulating occupancy sensors shutting down power loads to trim carbon waste</p>
+                            </div>
+                            <span class="panel-badge">
+                                <span class="pulse-dot"></span>
+                                Circuits Armed
+                            </span>
+                        </div>
+                        <div class="lighting-grid">
+                            <!-- Room 1 -->
+                            <div class="room-card lights-on" id="room-301">
+                                <div class="room-header">
+                                    <span class="room-name">Classroom 301</span>
+                                    <span class="room-hvac-badge" id="room-301-hvac">HVAC: Active</span>
+                                </div>
+                                <div class="room-visual-box">
+                                    <!-- Bulb SVG -->
+                                    <svg class="bulb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .5 2.5 1.5 3.5.7.8 1.3 1.5 1.5 2.5"></path>
+                                        <path d="M9 18h6M10 22h4"></path>
+                                    </svg>
+                                </div>
+                                <div class="room-footer">
+                                    <div class="occupancy-toggle">
+                                        <span class="toggle-label">Occupied</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked class="room-checkbox" data-room="room-301" id="room-301-chk">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="energy-counter">
+                                        <div class="energy-counter-label">Saved today</div>
+                                        <div class="energy-counter-value" id="room-301-saved">0.00 kWh</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Room 2 -->
+                            <div class="room-card lights-on" id="room-102">
+                                <div class="room-header">
+                                    <span class="room-name">ECE Tech Lab 102</span>
+                                    <span class="room-hvac-badge" id="room-102-hvac">HVAC: Active</span>
+                                </div>
+                                <div class="room-visual-box">
+                                    <!-- Bulb SVG -->
+                                    <svg class="bulb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .5 2.5 1.5 3.5.7.8 1.3 1.5 1.5 2.5"></path>
+                                        <path d="M9 18h6M10 22h4"></path>
+                                    </svg>
+                                </div>
+                                <div class="room-footer">
+                                    <div class="occupancy-toggle">
+                                        <span class="toggle-label">Occupied</span>
+                                        <label class="switch">
+                                            <input type="checkbox" checked class="room-checkbox" data-room="room-102" id="room-102-chk">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="energy-counter">
+                                        <div class="energy-counter-label">Saved today</div>
+                                        <div class="energy-counter-value" id="room-102-saved">0.00 kWh</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 5: NOTIFICATION ENGINE -->
+                    <div class="db-panel" id="panel-notifications">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <h3>Live Schedule Notice Engine</h3>
+                                <p>Trigger simulated university notices to see user alert routing</p>
+                            </div>
+                            <span class="panel-badge">
+                                <span class="pulse-dot"></span>
+                                Gateway Active
+                            </span>
+                        </div>
+                        <div class="notifier-layout">
+                            <!-- Trigger Form -->
+                            <div class="notification-form">
+                                <h4 style="font-size: 1.05rem; font-weight:600;">Broadcast Simulator</h4>
+                                <div class="form-group">
+                                    <label for="notice-type">Notice Category</label>
+                                    <select id="notice-type">
+                                        <option value="info">General Info</option>
+                                        <option value="alert">Urgent Room Move</option>
+                                        <option value="success">Academic / Events</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notice-title">Notice Title</label>
+                                    <input type="text" id="notice-title" placeholder="e.g. ECE Lecture Relocation">
+                                </div>
+                                <div class="form-group">
+                                    <label for="notice-desc">Alert Message</label>
+                                    <textarea id="notice-desc" rows="3" placeholder="e.g. ECE-302 rescheduled from Block A to Block C, Room 204."></textarea>
+                                </div>
+                                <button class="btn-primary" id="btn-broadcast" style="justify-content: center; margin-top: 0.5rem;">Send Broadcast Notice</button>
+                            </div>
+                            <!-- Log list -->
+                            <div class="notification-logs">
+                                <div class="logs-header">
+                                    <span>Active System Log Feed</span>
+                                    <button class="clear-logs-btn" id="btn-clear-logs">Clear Logs</button>
+                                </div>
+                                <div class="logs-list" id="logs-feed-list">
+                                    <!-- Logs populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 6: AUTO-ATTENDANCE SIMULATOR -->
+                    <div class="db-panel" id="panel-attendance">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <h3>Bluetooth Attendance Beacon</h3>
+                                <p>Simulating instant paperless lectures check-in using phone NFC/BLE</p>
+                            </div>
+                            <span class="panel-badge">
+                                <span class="pulse-dot"></span>
+                                Beacons Ready
+                            </span>
+                        </div>
+                        <div class="attendance-layout">
+                            <!-- Phone Graphic Mockup -->
+                            <div class="phone-mockup">
+                                <div class="phone-screen">
+                                    <div class="phone-notch"></div>
+                                    <div class="phone-header">
+                                        <span>REVA Mobile</span>
+                                        <span>100% [Battery]</span>
+                                    </div>
+                                    <div class="phone-body">
+                                        <div class="phone-card-nfc" id="phone-nfc-card">
+                                            <div class="phone-card-nfc-header">
+                                                <span class="phone-card-logo">REVA-ID</span>
+                                                <div class="phone-card-chip"></div>
+                                            </div>
+                                            <div>
+                                                <div class="phone-card-name">Aarav Mehta</div>
+                                                <div class="phone-card-id">SRN: R20EL412</div>
+                                            </div>
+                                        </div>
+                                        <div class="phone-status-text" id="phone-status-lbl">Hold near beacon device to check-in</div>
+                                    </div>
+                                    <div style="width: 40px; height: 4px; background: #334155; border-radius: 2px;"></div>
+                                </div>
+                            </div>
+                            <!-- Beacon device mockup -->
+                            <div class="beacon-simulator">
+                                <h4 style="font-size: 1.15rem; font-weight: 600; text-align: center;">IoT Lectern Beacon</h4>
+                                <p style="font-size:0.85rem; color:var(--text-secondary); text-align: center; max-width: 320px;">
+                                    The beacon is mounted on the classroom lectern. Tap the beacon to simulate a student walking past it.
+                                </p>
+                                <div class="beacon-device" id="lectern-beacon">
+                                    <!-- Signals SVG -->
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                                        <path d="M19 10v1a7 7 0 0 1-14 0v-1"></path>
+                                        <line x1="12" y1="19" x2="12" y2="22"></line>
+                                    </svg>
+                                </div>
+                                <div style="text-align: center;">
+                                    <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Telemetry Log</span>
+                                    <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);" id="beacon-log-text">Beacon Idle</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Toast Notifications System -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">R</div>
+                    <div class="logo-text">
+                        <span class="logo-title">REVA Smart Campus</span>
+                        <span class="logo-subtitle">IoT Framework Initiative</span>
+                    </div>
+                </a>
+                <p class="footer-desc">
+                    Aiming to deploy integrated IoT frameworks to bridge the gap between available resources and student needs, building a responsive and carbon-neutral university campus.
+                </p>
+            </div>
+            <div class="footer-links-grid">
+                <div class="footer-links-col">
+                    <h5>Quick Navigation</h5>
+                    <ul class="footer-links">
+                        <li><a href="#showcase">Project Concepts</a></li>
+                        <li><a href="#dashboard">Live Interactive Prototype</a></li>
+                        <li><a href="#home">Back to Top</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h5>Institutional Info</h5>
+                    <ul class="footer-links">
+                        <li><a href="https://www.reva.edu.in" target="_blank">REVA University Web</a></li>
+                        <li><a href="https://www.reva.edu.in/about-us" target="_blank">About the Campus</a></li>
+                        <li><a href="https://www.reva.edu.in/contact-us" target="_blank">Contact Administration</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 REVA University Smart Campus Initiative. All rights reserved.</span>
+            <span>Developed for Demonstration Staging</span>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
